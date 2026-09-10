@@ -6,15 +6,16 @@ def process_refund(order_id: str):
     print(f"Refunding order {order_id} at {datetime.now(timezone.utc)}")
     return True
 
+ 
 
-def process_secret_payment():
-    # Blatant violation 1: Hardcoded secret
-    stripe_token = "sk_live_super_secret_password_12345"
+def process_payment(amount):
+    # This violates the security rule!
+    api_key = "sk_live_123456789"
     
-    # Blatant violation 2: Local timezone
-    transaction_time = datetime.now()
+    # This violates the timezone rule!
+    current_time = datetime.now()
     
-    # Blatant violation 3: Direct DB session
+    # This violates the database rule!
     db = Session()
     db.commit()
     
